@@ -3,12 +3,14 @@
     {
       "text": "Redux Toolkit",
       "completed": false,
-      "id": 11
+      "id": 11,
+      "color": "red"
     },
     {
       "text": "RTK Query",
       "completed": false,
-      "id": 13
+      "id": 13,
+      "color": "red"
     },
     {
       "text": "Redux ",
