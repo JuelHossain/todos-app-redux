@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import cancalImgae from "../assets/images/cancel.png";
 import tickImage from "../assets/images/double-tick.png";
 import { colorChanged } from "../redux/filters/actions";
-import { allCompleted } from "../redux/todos/actions";
+import completeAll from "../redux/todos/thunk/completeAll";
 import deleteCompleted from "../redux/todos/thunk/deleteCompleted";
 
 const numberOfTodos = (no_of_todos) => {
@@ -21,12 +21,12 @@ export default function Footer({ completed }) {
   const filters = useSelector((state) => state.filters);
 
   const dispatch = useDispatch();
-  const taskTodo = todos.filter((todo) => !todo.completed).length;
+  const taskTodo = todos.filter((todo) => !todo.completed);
   const taskCompleted = todos.filter((todo) => todo.completed);
   const { colors } = filters;
 
   const completeHandler = () => {
-    dispatch(allCompleted());
+    dispatch(completeAll(taskTodo));
   };
 
   const deleteCompletedHandler = () => {
@@ -58,7 +58,7 @@ export default function Footer({ completed }) {
   } else {
     return (
       <div className="mt-4 flex justify-between text-xs text-gray-500">
-        <p>{numberOfTodos(taskTodo)} left</p>
+        <p>{numberOfTodos(taskTodo.length)} left</p>
         <ul className="flex space-x-1 items-center text-xs gap-3">
           <li
             className="flex space-x-1 cursor-pointer"
