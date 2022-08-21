@@ -1,10 +1,9 @@
+import axios from "axios";
 import { loaded } from "../actions";
 
 const fetchTodos = async (dispatch) => {
-    const response = await fetch("http://localhost:9000/todos");
-    const todos = await response.json();
-
-    dispatch(loaded(todos));
+  const { data } = await axios("/todos");
+  dispatch(loaded(data));
 };
 
 export default fetchTodos;

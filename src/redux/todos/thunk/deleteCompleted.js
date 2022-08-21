@@ -1,11 +1,9 @@
+import axios from "axios";
 import { deleted } from "../actions";
-
 const deleteCompleted = (completed) => {
   return async (dispatch) => {
     await completed.forEach(async (todo) => {
-      await fetch(`http://localhost:9000/todos/${todo.id}`, {
-        method: "DELETE",
-      });
+      await axios.delete(`/todos/${todo.id}`);
       dispatch(deleted(todo.id));
     });
   };
